@@ -1,89 +1,35 @@
 .WRating-slider {
+  display: block;
   -webkit-appearance: none;
+  background-color: #bdc3c7;
   width: 100%;
-  margin: 13.8px 0;
+  height: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+  outline: 0;
+  margin: 20px 0;
 }
-.WRating-slider:focus {
-  outline: none;
-}
-.WRating-slider::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 8.4px;
-  cursor: pointer;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: #e26957;
-  border-radius: 1.3px;
-  border: 0.2px solid #010101;
-}
+
 .WRating-slider::-webkit-slider-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 36px;
-  width: 36px;
-  border-radius: 100%;
-  background: #8b1713;
-  cursor: pointer;
   -webkit-appearance: none;
-  margin-top: -14px;
-}
-.WRating-slider:focus::-webkit-slider-runnable-track {
-  background: #e36d5b;
-}
-.WRating-slider::-moz-range-track {
-  width: 100%;
-  height: 8.4px;
+  background-color: #8B1713;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
   cursor: pointer;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: #e26957;
-  border-radius: 1.3px;
-  border: 0.2px solid #010101;
-}
-.WRating-slider::-moz-range-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 36px;
-  width: 16px;
-  border-radius: 3px;
-  background: #8b1713;
-  cursor: pointer;
-}
-.WRating-slider::-ms-track {
-  width: 100%;
-  height: 8.4px;
-  cursor: pointer;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-.WRating-slider::-ms-fill-lower {
-  background: #e16553;
-  border: 0.2px solid #010101;
-  border-radius: 2.6px;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-}
-.WRating-slider::-ms-fill-upper {
-  background: #e26957;
-  border: 0.2px solid #010101;
-  border-radius: 2.6px;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-}
-.WRating-slider::-ms-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 36px;
-  width: 16px;
-  border-radius: 3px;
-  background: #8b1713;
-  cursor: pointer;
-  height: 8.4px;
-}
-.WRating-slider:focus::-ms-fill-lower {
-  background: #e26957;
-}
-.WRating-slider:focus::-ms-fill-upper {
-  background: #e36d5b;
+  transition: .3s ease-in-out;
 }
 
 .WRating-slider::-webkit-slider-thumb:active {
-  transform: scale(1.5);
+  transform: scale(1.2);
+  /* border: 2px solid #8B1713; */
+}
+
+.WRating-lock:hover {
+  cursor: pointer;
+}
+
+.WRating-icon {
+  width: 100%;
+  height: 100%;
 }

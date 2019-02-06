@@ -36,6 +36,9 @@ class Slider
     value = clamp();
     this.value = Math.round(value);
     this.input.value = value.toString();
+    
+    const fillIn = `linear-gradient(to right, #8B1713 0%, #8B1713 ${value}%, #bdc3c7 ${value}%)`;
+    this.input.style.background = fillIn;
   }
 
   public getValue(): number
@@ -50,6 +53,7 @@ class Slider
       const target = event.target as HTMLInputElement;
       const value = parseInt(target.value);
       this.setValue(value);
+
       onChange(this);
     });
   }
