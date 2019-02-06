@@ -67,26 +67,33 @@ class Rating
       return (values.reduce((sum, value) => sum + value)) - this.maxValue;
     }
 
-    const calculateRatios = (sliders: Slider[]) =>
+    // filter out locked, curently moving sliders and sliders with min/maxed values
+    const filterSliders = (sliders: Slider[], difference: number): Slider[] =>
     {
-      const values = sliders.map(slider => slider.getValue());
-      let sum = values.reduce((sum, value) => sum + value);
-      if (sum <= this.minValue) {
-        return values.map(() => 1 / sliders.length);
+      const baseFilter = (slider: Slider) => !slider.getIsLocked() && slider !== currentSlider;
+      const valueFilter = (slider: Slider) =>
+      {
+        if (difference > 0) {
+          return slider.getValue() > this.minValue;
+        } else if (difference < 0) {
+          return slider.getValue() < this.maxValue;
+        }
+        return false;
       }
-      return values.map(value => value / sum);
+      
+      return sliders.filter(slider => baseFilter(slider) && valueFilter(slider));
     }
 
     const setValues = (sliders: Slider[]) => 
     {
-      // filter out locked and curently moving sliders
-      const filteredSliders = sliders.filter(slider => !slider.getIsLocked() && slider !== currentSlider);
-
       const difference = calculateDifference(sliders);
-      const ratios = calculateRatios(filteredSliders);
-      filteredSliders.forEach((slider, index) =>
+      const filteredSliders = filterSliders(sliders, difference);
+      if (filteredSliders && filteredSliders.length < 1) {
+        return;
+      }
+      filteredSliders.forEach(slider =>
       {
-        const ratio = ratios[index];
+        const ratio = 1 / filteredSliders.length;
         const substract = Math.floor(difference * ratio * this.maxValue) / this.maxValue;
         let value = slider.getValue() - substract;
         slider.setValue(value);
@@ -97,7 +104,7 @@ class Rating
     {
       const values = sliders.map(slider => slider.getValue());
       const sum = values.reduce((sum, value) => sum + value);
-      if (sum > this.maxValue) {
+      if (sum !== this.maxValue) {
         const value = currentSlider.getValue() + (this.maxValue - sum);
         currentSlider.setValue(value);
       }
