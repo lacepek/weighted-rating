@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": false,
+        "sourceMap": true,
+        "module": "es6",
+        "target": "es5",
+        "declaration": true,
+        "declarationDir": "../declaration",
+        "declarationMap": true,
+        "lib": [
+			"es6",
+			"dom",
+			"es2015"
+		],
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
