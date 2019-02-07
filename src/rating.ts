@@ -5,7 +5,7 @@ import IElement from "./iElement";
 import Value from "./value";
 import IRenderable from "./iRenderable";
 
-const defaultOptions: RatingOptions = { sliders: [], minValue: 0, maxValue: 100 };
+const defaultOptions: RatingOptions = { sliders: null, minValue: 0, maxValue: 100 };
 
 class Rating implements IElement, IRenderable
 {
@@ -17,6 +17,11 @@ class Rating implements IElement, IRenderable
   constructor(options: RatingOptions)
   {
     options = { ...defaultOptions, ...options };
+
+    if (!options.sliders) {
+      console.error('You must set slider configuration');
+      return;
+    }
 
     this.minValue = options.minValue;
     this.maxValue = options.maxValue;
@@ -51,7 +56,7 @@ class Rating implements IElement, IRenderable
     sliders.forEach((slider, index) =>
     {
       const valueComponent = new Value(slider.getValue());
-      
+
       slider.setValueComponent(valueComponent);
       slider.setOnChange(currentSlider => this.normalizeValues(sliders, currentSlider));
 
@@ -60,7 +65,7 @@ class Rating implements IElement, IRenderable
 
       const lock = locks[index];
       lock.addSlider(slider);
-      
+
       row.appendChild(lock.getElement());
       row.appendChild(slider.getElement());
       row.appendChild(valueComponent.getElement());
@@ -90,7 +95,7 @@ class Rating implements IElement, IRenderable
         }
         return false;
       }
-      
+
       return sliders.filter(slider => baseFilter(slider) && valueFilter(slider));
     }
 
@@ -101,22 +106,27 @@ class Rating implements IElement, IRenderable
       if (filteredSliders && filteredSliders.length < 1) {
         return;
       }
+      const ratio = 1 / filteredSliders.length;
       filteredSliders.forEach(slider =>
       {
-        const ratio = 1 / filteredSliders.length;
-        const substract = Math.floor(difference * ratio * this.maxValue) / this.maxValue;
+        const substract = Math.floor(difference * ratio);
         let value = slider.getValue() - substract;
         slider.setValue(value);
       });
     }
-
+    
     const restrictMaxValue = (sliders: Slider[]) =>
     {
       const values = sliders.map(slider => slider.getValue());
       const sum = values.reduce((sum, value) => sum + value);
       if (sum !== this.maxValue) {
-        const value = currentSlider.getValue() + (this.maxValue - sum);
-        currentSlider.setValue(value);
+        const difference = sum - this.maxValue;
+        const filteredSliders = filterSliders(sliders, difference);
+        const substract = difference / filterSliders.length;
+        filteredSliders.forEach(slider => {
+          const value = slider.getValue() - substract;
+          slider.setValue(value);
+        })
       }
     }
 
@@ -126,8 +136,33 @@ class Rating implements IElement, IRenderable
   }
 }
 
-export type RatingOptions = { sliders: SliderOptions[]; minValue: number; maxValue: number; }
+export type RatingOptions = {
+  /**
+   * Configuration for each slider
+   */
+  sliders: SliderOptions[];
 
-export type SliderOptions = { value: number; name: string; }
+  /**
+   * Minimun value of sliders
+   */
+  minValue: number;
+
+  /**
+   * Maximum value of sliders
+   */
+  maxValue: number;
+}
+
+export type SliderOptions = {
+  /**
+   * Initital value
+   */
+  value: number;
+
+  /**
+   * Input name
+   */
+  name: string;
+}
 
 export default Rating;
