@@ -14,7 +14,7 @@ class Lock
     this.isLocked = isLocked;
 
     this.lock = document.createElement('div');
-    this.lock.className = 'col-1';
+    this.lock.className = 'WRating-lock';
 
     this.icon = document.createElement('span');
     this.setIcon();
@@ -69,8 +69,8 @@ class Lock
 
   private setIcon()
   {
-    const className = 'fa';
-    this.icon.className = this.isLocked ? `${className} fa-lock` : `${className} fa-lock-open`;
+    const className = 'WRating-icon fa fa-lock fa-2x';
+    this.icon.className = this.isLocked ? `${className} WRating-active` : className;
   }
 
   private onClick()

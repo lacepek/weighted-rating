@@ -28,6 +28,7 @@ class Rating
   private render(options: RatingOptions)
   {
     this.rating = document.createElement('div');
+    this.rating.className = 'WRating-wrap';
 
     this.renderSliders(options);
   }
@@ -44,7 +45,7 @@ class Rating
     sliders.forEach((slider, index) =>
     {
       const row = document.createElement('div');
-      row.className = 'row';
+      row.className = 'WRating-slider-wrap';
 
       const lock = locks[index];
       lock.addSlider(slider);
