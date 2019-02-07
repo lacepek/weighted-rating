@@ -4,7 +4,7 @@ One Paragraph of project description goes here
 
 ## Installing
 
-### NPM
+#### NPM
 
 ```
 npm i weighted-rating
