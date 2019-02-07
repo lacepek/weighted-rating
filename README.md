@@ -12,7 +12,7 @@
 npm i weighted-rating
 ```
 
-## Usage
+### Usage
 ```
 const parentSelector = '#rating-wrapper';
 const options = {
