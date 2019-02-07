@@ -33,7 +33,7 @@
 
 .WRating-icon {
   color: #bdc3c7;
-  transition: color 0.5s;
+  transition: color .2s;
 }
 
 .WRating-icon.WRating-active {
