@@ -6,8 +6,6 @@
 
 ### Instalation
 
-#### npm
-
 ```
 npm i weighted-rating
 ```
