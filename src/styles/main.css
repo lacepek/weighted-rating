@@ -1,8 +1,7 @@
 .WRating-slider {
-  display: block;
   -webkit-appearance: none;
   background-color: #bdc3c7;
-  width: 100%;
+  width: 93%;
   height: 5px;
   border-radius: 5px;
   margin: 0 auto;
@@ -20,16 +19,28 @@
   transition: .3s ease-in-out;
 }
 
-.WRating-slider::-webkit-slider-thumb:active {
+.WRating-slider::-webkit-slider-thumb:active, .WRating-slider::-webkit-slider-thumb:hover {
   transform: scale(1.2);
-  /* border: 2px solid #8B1713; */
+}
+
+.WRating-lock {
+  width: 7%;
+  float: left;
 }
 
 .WRating-lock:hover {
-  cursor: pointer;
+  cursor: pointer
 }
 
 .WRating-icon {
+  color: #bdc3c7;
+  transition: color 0.5s;
+}
+
+.WRating-icon.WRating-active {
+  color: #8B1713
+}
+
+.WRating-wrap {
   width: 100%;
-  height: 100%;
 }
