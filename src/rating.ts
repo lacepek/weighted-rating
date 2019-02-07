@@ -1,14 +1,18 @@
 import Slider from "./slider";
 import './styles/main.css';
 import Lock from "./lock";
+import IElement from "./iElement";
+import Value from "./value";
+import IRenderable from "./iRenderable";
 
 const defaultOptions: RatingOptions = { sliders: [], minValue: 0, maxValue: 100 };
 
-class Rating
+class Rating implements IElement, IRenderable
 {
   private rating: HTMLElement;
   private maxValue: number;
   private minValue: number;
+  private options: RatingOptions;
 
   constructor(options: RatingOptions)
   {
@@ -17,7 +21,9 @@ class Rating
     this.minValue = options.minValue;
     this.maxValue = options.maxValue;
 
-    this.render(options);
+    this.options = options;
+
+    this.render();
   }
 
   public getElement(): HTMLElement
@@ -25,12 +31,12 @@ class Rating
     return this.rating;
   }
 
-  private render(options: RatingOptions)
+  public render()
   {
     this.rating = document.createElement('div');
     this.rating.className = 'WRating-wrap';
 
-    this.renderSliders(options);
+    this.renderSliders(this.options);
   }
 
   private renderSliders(options: RatingOptions)
@@ -44,17 +50,20 @@ class Rating
 
     sliders.forEach((slider, index) =>
     {
+      const valueComponent = new Value(slider.getValue());
+      
+      slider.setValueComponent(valueComponent);
+      slider.setOnChange(currentSlider => this.normalizeValues(sliders, currentSlider));
+
       const row = document.createElement('div');
       row.className = 'WRating-slider-wrap';
 
       const lock = locks[index];
       lock.addSlider(slider);
-
+      
       row.appendChild(lock.getElement());
-
-      slider.setOnChange(currentSlider => this.normalizeValues(sliders, currentSlider));
-
       row.appendChild(slider.getElement());
+      row.appendChild(valueComponent.getElement());
 
       this.rating.appendChild(row);
     });

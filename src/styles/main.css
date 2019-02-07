@@ -1,12 +1,11 @@
 .WRating-slider {
   -webkit-appearance: none;
   background-color: #bdc3c7;
-  width: 93%;
+  width: 86%;
   height: 5px;
   border-radius: 5px;
-  margin: 0 auto;
+  margin: 20px auto;
   outline: 0;
-  margin: 20px 0;
 }
 
 .WRating-slider::-webkit-slider-thumb {
@@ -43,4 +42,14 @@
 
 .WRating-wrap {
   width: 100%;
+}
+
+.WRating-value {
+  width: 7%;
+  float: right;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  margin: 10px 0;
+  color: #292f33
 }

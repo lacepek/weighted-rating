@@ -1,6 +1,9 @@
 import Slider from "./slider";
+import IElement from "./iElement";
+import ILockable from "./iLockable";
+import IRenderable from "./iRenderable";
 
-class Lock
+class Lock implements IElement, ILockable, IRenderable
 {
   private lock: HTMLElement;
   private icon: HTMLElement;
@@ -13,6 +16,13 @@ class Lock
   {
     this.isLocked = isLocked;
 
+    this.render();
+
+    this.lock.addEventListener('click', () => { this.onClick() });
+  }
+
+  public render(): void
+  {
     this.lock = document.createElement('div');
     this.lock.className = 'WRating-lock';
 
@@ -22,8 +32,6 @@ class Lock
     this.lock.appendChild(this.icon);
 
     this.show();
-
-    this.lock.addEventListener('click', () => { this.onClick() });
   }
 
   public getElement(): HTMLElement
@@ -34,6 +42,11 @@ class Lock
   public getIsLocked(): boolean
   {
     return this.isLocked;
+  }
+
+  public setIsLocked(isLocked: boolean): void
+  {
+    this.isLocked = isLocked;
   }
 
   public show()
