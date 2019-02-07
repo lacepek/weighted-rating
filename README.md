@@ -1,7 +1,5 @@
 # Weighted Rating
 
-One Paragraph of project description goes here
-
 ## Installing
 
 #### NPM
