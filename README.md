@@ -1,8 +1,12 @@
 # Weighted Rating
 
-## Installing
+## Getting Started
 
-#### NPM
+[Documentation](https://lacepek.github.io/weighted-rating/)
+
+### Instalation
+
+#### npm
 
 ```
 npm i weighted-rating
