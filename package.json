@@ -8,9 +8,9 @@
 				"start:server": "webpack-dev-server --display-error-details --hot --config webpack.dev.js",
 				"build:dev": "webpack --display-error-details --config webpack.dev.js",
 				"build:prod": "webpack --config webpack.prod.js",
-				"build": "npm run build:dev && npm run build:prod",
-				"update": "npm i && npm update",
-				"doc": "typedoc --out documentation"
+				"build:docs": "typedoc --readme ./README.md --out ./docs && touch ./docs/.nojekyll",
+				"build": "npm run build:dev && npm run build:prod && build:docs",
+				"update": "npm i && npm update"
 		},
 		"devDependencies": {
 				"clean-css-loader": "^1.1.0",

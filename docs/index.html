@@ -64,7 +64,30 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="weighted-rating">weighted-rating</h1>
+				<h1 id="weighted-rating">Weighted Rating</h1>
+				<h2 id="getting-started">Getting Started</h2>
+				<p><a href="https://lacepek.github.io/weighted-rating/">Documentation</a></p>
+				<h3 id="instalation">Instalation</h3>
+				<h4 id="npm">npm</h4>
+				<pre><code>npm <span class="hljs-selector-tag">i</span> weighted-rating</code></pre><h2 id="usage">Usage</h2>
+				<pre><code>const parentSelector = <span class="hljs-string">'#rating-wrapper'</span>;
+const <span class="hljs-keyword">options</span> = {
+  sliders: [
+    { <span class="hljs-keyword">value</span>: <span class="hljs-number">30</span>, <span class="hljs-type">name</span>: <span class="hljs-string">'rating-1'</span> },
+    { <span class="hljs-keyword">value</span>: <span class="hljs-number">25</span>, <span class="hljs-type">name</span>: <span class="hljs-string">'rating-2'</span> },
+    { <span class="hljs-keyword">value</span>: <span class="hljs-number">25</span>, <span class="hljs-type">name</span>: <span class="hljs-string">'rating-3'</span> },
+    { <span class="hljs-keyword">value</span>: <span class="hljs-number">20</span>, <span class="hljs-type">name</span>: <span class="hljs-string">'rating-4'</span> }
+  ]
+}
+
+WRating.<span class="hljs-keyword">create</span>({ parentSelector, <span class="hljs-keyword">options</span> });</code></pre><h2 id="versioning">Versioning</h2>
+				<p>For the versions available, see the <a href="https://github.com/lacepek/weighted-rating/tags">tags on this repository</a>. </p>
+				<h2 id="authors">Authors</h2>
+				<ul>
+					<li><strong>Ladislav Čepek</strong> - <a href="https://github.com/lacepek">lacepek</a></li>
+				</ul>
+				<h2 id="license">License</h2>
+				<p>This project is licensed under the MIT License - see the <a href="https://github.com/lacepek/weighted-rating/blob/master/LICENSE">LICENSE.md</a> file for details</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
