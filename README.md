@@ -1,7 +1,17 @@
 # Weighted Rating
 
-Usage
+One Paragraph of project description goes here
 
+## Installing
+
+NPM
+
+```
+npm i weighted-rating
+```
+
+## Usage
+```
 const parentSelector = '#rating-wrapper';
 const options = {
   sliders: [
@@ -13,3 +23,16 @@ const options = {
 }
 
 WRating.create({ parentSelector, options });
+```
+
+## Versioning
+
+For the versions available, see the [tags on this repository](https://github.com/lacepek/weighted-rating/tags). 
+
+## Authors
+
+* **Ladislav Čepek** - [lacepek](https://github.com/lacepek)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
